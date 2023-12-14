@@ -86,8 +86,27 @@ poetry add python-multipart
 
 uvicorn main:app --host localhost --port 8000 --reload
 
+edit src/database/models.py
+edit src/schemas.py
+src/repository/users.py
+src/services/auth.py
+
+src/routes/auth.py
+
+in main.py add:
+app.include_router(auth.router, prefix='/api')
+
+edit src/repository/tags.py
+edit src/repository/notes.py
+
+edit src/routes/tags.py
+edit src/routes/notes.py
+
+
 alembic revision --autogenerate -m 'Init'
 alembic upgrade head
+
+
 
 
 

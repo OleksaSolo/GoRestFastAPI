@@ -43,6 +43,9 @@ async def create_tag(
     db: Session = Depends(get_db),
     current_user: User = Depends(auth_service.get_current_user),
 ):
+    print(f"body = {body} \n")
+    print(f"db = {db} \n")
+    print(f"current_user = {current_user} \n")
     return await repository_tags.create_tag(body, current_user, db)
 
 

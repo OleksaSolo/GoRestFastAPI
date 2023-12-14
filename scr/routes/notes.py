@@ -7,7 +7,7 @@ from scr.database.db import get_db
 from scr.database.models import User
 from scr.schemas import NoteModel, NoteUpdate, NoteStatusUpdate, NoteResponse
 from scr.repository import notes as repository_notes
-from scr.services.auth import Auth as auth_service
+from scr.services.auth import auth_service
 
 
 router = APIRouter(prefix='/notes', tags=["notes"])
@@ -30,8 +30,14 @@ async def read_note(note_id: int, db: Session = Depends(get_db),
 
 
 @router.post("/", response_model=NoteResponse, status_code=status.HTTP_201_CREATED)
-async def create_note(body: NoteModel, db: Session = Depends(get_db),
-                      current_user: User = Depends(auth_service.get_current_user)):
+async def create_note(
+        body: NoteModel,
+        db: Session = Depends(get_db),
+        current_user: User = Depends(auth_service.get_current_user),
+):
+    print(f"body = {body} \n")
+    print(f"db = {db} \n")
+    print(f"current_user = {current_user} \n")
     return await repository_notes.create_note(body, current_user, db)
 
 
