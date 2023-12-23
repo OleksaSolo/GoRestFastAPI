@@ -106,6 +106,7 @@ edit src/routes/notes.py
 alembic revision --autogenerate -m 'Init'
 alembic upgrade head
 
+user: admin@ex.ua 567234
 
 
 
